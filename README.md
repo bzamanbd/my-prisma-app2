@@ -1,6 +1,6 @@
 # Node App with Prisma ORM and PostgreSQL
 This is a very simple Node CRUD app using express, prisma and postgres database.
-you can test it with local postgres db or can be run in your docker. For local db you can find the database settings in ".env" file. Set the postgres db and run the app. It will work well.
+you can test it with local postgres db or can be run in your docker. For local db you can find the database settings in ".env" file. Set the postgres db and run the app ( using "npm start" or "node index.js" ). It will work well.
 
 if you wish to run it in your docker then just clone the repo, open your terminal (CMD) and navigate the repo and use these two commands. But before using these commands make sure your docker is on mode.
 
