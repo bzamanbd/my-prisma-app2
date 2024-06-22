@@ -3,7 +3,7 @@ import 'dotenv/config'
 import { PrismaClient } from "@prisma/client"
 
 const app = express() 
-const port = process.env.PORT || 3003
+const port = process.env.PORT || 3004
 
 
 const prisma = new PrismaClient()
