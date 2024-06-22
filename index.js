@@ -60,4 +60,62 @@ app.get('/users',async (req,res)=>{
     }
 })
 
+
+app.put("/users/:id", async (req, res)=>{ 
+    const userId = req.params.id
+    const {name,email,phone} = req.body
+    try {  
+        const oldUser = await prisma.user.findFirst({where:{id: Number(userId)}})
+        if (!oldUser) {
+            return res.status(404).json({ 
+                Message:"User not found!"
+            })
+        }
+        const user = await prisma.user.update({ 
+            where: {id: Number(userId)}, 
+            data:{ name,email,phone}
+         })
+        res.status(200).json({ 
+            Message:"User updated successfully", 
+            user
+        })
+        
+    } catch (error) {
+        res.status(500).json({ 
+            Error:"Something went wrong", 
+            error
+        })
+    }
+})
+
+
+
+
+app.delete("/users/:id", async (req, res)=>{ 
+    const userId = req.params.id
+    try {  
+        const oldUser = await prisma.user.findFirst({where:{id: Number(userId)}})
+        if (!oldUser) {
+            return res.status(404).json({ 
+                Message:"User not found!"
+            })
+        }
+        await prisma.user.delete({ 
+            where: {id: Number(userId)}
+         })
+        res.status(200).json({ 
+            Delete:"User deleted successfully"
+        })
+        
+    } catch (error) {
+        res.status(500).json({ 
+            Error:"Something went wrong", 
+            error
+        })
+    }
+})
+
+
+
+
 app.listen(port,()=>console.log(`app runs on http://localhost:${port}`))
